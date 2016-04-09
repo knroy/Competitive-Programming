@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+
+class Main {
+	static Scanner IN = new Scanner(System.in);
+	public static BigInteger[] fib = new BigInteger[4010];
+	public static BigInteger[] seq = new BigInteger[2005]; 
+	public static int sz = 4010;
+	public static int n=1;
+	public static void gen()
+	{
+		fib[0] = BigInteger.valueOf(0);
+		fib[1] = BigInteger.valueOf(1);
+		for(int i=2;i<sz;i++)
+		{
+			fib[i] = fib[i-1].add(fib[i-2]);
+			if(i%2==0)
+				seq[n++] = fib[i];
+		}
+	}
+	
+	public static void main(String args[])
+    {
+		gen();
+		int x;
+		while (IN.hasNext()) {
+			x = IN.nextInt();
+			if(x==0)
+				break;
+			System.out.println(seq[x]);
+		}
+    }
+}

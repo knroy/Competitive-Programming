@@ -1,0 +1,25 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		int n, f;
+		Scanner IN = new Scanner(System.in);
+		int x = 1;
+		while (IN.hasNext()) {
+			n = IN.nextInt();
+			f = IN.nextInt();
+			if (n == 0 && f == 0)
+				break;
+			BigInteger sum = BigInteger.ZERO, V;
+			for (int i = 0; i < n; i++) {
+				V = IN.nextBigInteger();
+				sum = sum.add(V);
+			}
+			System.out.println("Bill #" + x + " costs "+ sum +": each friend should pay "+ sum.divide(BigInteger.valueOf(f)));
+			System.out.println();
+			x++;
+		}
+	}
+}
