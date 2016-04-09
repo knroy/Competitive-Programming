@@ -4,7 +4,7 @@ Mathematics:
 
     Prime Number Generation  (Sieve, Segmented Sieve)
     Euler Totient Theorem
-    Fermat’s Theorem
+    Fermatâ€™s Theorem
     HCF & LCM (Euclid)
     Linear Diophantine Equations (Extended Euclid)
     Modulus Arithmetic (addition,multiplication,subtraction,modular Inverse)
@@ -85,7 +85,7 @@ Graphs:
     Special Graphs
 
 
-(c)DFS & It’s Application
+(c)DFS & Itâ€™s Application
 
     Cycle Detection
     Articulation Points
@@ -101,7 +101,7 @@ Graphs:
     Flood-fill algorithm
 
 
-(d)BFS & It’s Application
+(d)BFS & Itâ€™s Application
 
     Shortest Path (No. Of Edges)
     Bipartite Checking
@@ -110,7 +110,7 @@ Graphs:
 
 (d)Minimum Spanning Tree
 
-    Prim’s Algorithm
+    Primâ€™s Algorithm
     Kruskal Algorithm
 
 
@@ -122,7 +122,7 @@ Graphs:
 
 (e)All pair Shortest Path
 
-    Floyd Warshall’s Algorithm
+    Floyd Warshallâ€™s Algorithm
 
 
 (f)Euler Tour
