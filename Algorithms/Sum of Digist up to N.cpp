@@ -24,54 +24,39 @@
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define In freopen("In.txt", "r", stdin);
 #define Out freopen("out.txt", "w", stdout);
+#define limit 10000000
 
 using namespace std;
+int dp[limit+5];
 
-#define mx 1000
-
-char a[mx],b[mx];
-int c[mx][mx];
-
-int maximum(int x,int y)
+int totalSum(int n)
 {
-    if(x>y)
-        return x;
-    else
-        return y;
-}
-
-int lcs()
-{
-    int lena = strlen(a);
-    int lenb = strlen(b);
-    int i,j;
-    for(i=1; i<=lena; i++)
+    int total = 0;
+    while(n!=0)
     {
-        for(j=1; j<=lenb; j++)
-        {
-            if(a[i-1]==b[j-1])
-                c[i][j] = c[i-1][j-1]+1;
-            else
-                c[i][j] = maximum(c[i][j-1],c[i-1][j]);
-        }
+        int tmp = n % 10;
+        total += tmp;
+        n /= 10;
     }
-    return c[lena][lenb];
+    return total;
 }
 
-void printSolution()
+void sumDigitsUptoN()
 {
-    string str  = "";
-
+    dp[0] = 0;
+    for(int i=1; i<limit; i++)
+    {
+        dp[i] = dp[i-1] + totalSum(i);
+    }
 }
 
 int main()
 {
-    int m;
-    while(gets(a) && gets(b))
+    sumDigitsUptoN();
+    int n;
+    while(cin >> n)
     {
-        m = lcs();
-        printf("%d\n",m);
-        memset(c,0,sizeof(c));
+        cout << dp[n] << endl;
     }
     return 0;
 }

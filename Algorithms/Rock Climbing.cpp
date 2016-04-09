@@ -27,52 +27,34 @@
 
 using namespace std;
 
-#define mx 1000
-
-char a[mx],b[mx];
-int c[mx][mx];
-
-int maximum(int x,int y)
+#define inf 1<<28
+int mat[][10]=
 {
-    if(x>y)
-        return x;
-    else
-        return y;
-}
+    {-1, 2, 5},
+    {4, -2, 3},
+    {1 , 2 ,10,}
+};
+int dp[10][10];
+int r=3,c=3;
 
-int lcs()
+int rockClimb(int i,int j)
 {
-    int lena = strlen(a);
-    int lenb = strlen(b);
-    int i,j;
-    for(i=1; i<=lena; i++)
+    if((i>=0 && i<r) && (j>=0 && j<c))
     {
-        for(j=1; j<=lenb; j++)
-        {
-            if(a[i-1]==b[j-1])
-                c[i][j] = c[i-1][j-1]+1;
-            else
-                c[i][j] = maximum(c[i][j-1],c[i-1][j]);
-        }
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        int ret = -inf;
+        ret = MAX(ret,rockClimb(i+1,j)+mat[i][j]);
+        ret = MAX(ret,rockClimb(i+1,j-1)+mat[i][j]);
+        ret = MAX(ret,rockClimb(i+1,j+1)+mat[i][j]);
+        return dp[i][j] = ret;
     }
-    return c[lena][lenb];
-}
-
-void printSolution()
-{
-    string str  = "";
-
+    else return 0;
 }
 
 int main()
 {
-    int m;
-    while(gets(a) && gets(b))
-    {
-        m = lcs();
-        printf("%d\n",m);
-        memset(c,0,sizeof(c));
-    }
+    MEM(dp,-1);
+    cout << rockClimb(0,0) << endl;
     return 0;
 }
-

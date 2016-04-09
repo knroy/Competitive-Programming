@@ -24,55 +24,44 @@
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define In freopen("In.txt", "r", stdin);
 #define Out freopen("out.txt", "w", stdout);
+#define sz 100
+#define sz_w 1000
 
 using namespace std;
 
-#define mx 1000
+int CAP;
+int weight[sz+1];
+int cost[sz+1];
+int dp[sz+1][sz_w+1];
+int n;
 
-char a[mx],b[mx];
-int c[mx][mx];
-
-int maximum(int x,int y)
+void init()
 {
-    if(x>y)
-        return x;
-    else
-        return y;
+    MEM(dp,-1);
 }
 
-int lcs()
+int func(int i,int w)
 {
-    int lena = strlen(a);
-    int lenb = strlen(b);
-    int i,j;
-    for(i=1; i<=lena; i++)
-    {
-        for(j=1; j<=lenb; j++)
-        {
-            if(a[i-1]==b[j-1])
-                c[i][j] = c[i-1][j-1]+1;
-            else
-                c[i][j] = maximum(c[i][j-1],c[i-1][j]);
-        }
-    }
-    return c[lena][lenb];
-}
-
-void printSolution()
-{
-    string str  = "";
-
+    if(i == n)
+        return 0;
+    if(dp[i][w]!=-1)
+        return dp[i][w];
+    int prof1 = 0,prof2 = 0;
+    if(w+weight[i]<=CAP)
+        prof1 = cost[i] + func(i+1,w+weight[i]);
+    prof2 = func(i+1,w);
+    dp[i][w] = MAX(prof1,prof2);
+    return dp[i][w];
 }
 
 int main()
 {
-    int m;
-    while(gets(a) && gets(b))
+    init();
+    cin >> n >> CAP;
+    for(int i=0; i<n; i++)
     {
-        m = lcs();
-        printf("%d\n",m);
-        memset(c,0,sizeof(c));
+        cin >> weight[i] >> cost[i];
     }
+    cout << func(0,0) << endl;
     return 0;
 }
-

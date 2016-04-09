@@ -24,55 +24,25 @@
 #define MIN(a,b) ((a)<(b)?(a):(b))
 #define In freopen("In.txt", "r", stdin);
 #define Out freopen("out.txt", "w", stdout);
+#define sz 10000
 
 using namespace std;
+long long unsigned dp[sz];
 
-#define mx 1000
-
-char a[mx],b[mx];
-int c[mx][mx];
-
-int maximum(int x,int y)
+void sumOfDivisors()
 {
-    if(x>y)
-        return x;
-    else
-        return y;
-}
-
-int lcs()
-{
-    int lena = strlen(a);
-    int lenb = strlen(b);
-    int i,j;
-    for(i=1; i<=lena; i++)
-    {
-        for(j=1; j<=lenb; j++)
-        {
-            if(a[i-1]==b[j-1])
-                c[i][j] = c[i-1][j-1]+1;
-            else
-                c[i][j] = maximum(c[i][j-1],c[i-1][j]);
-        }
-    }
-    return c[lena][lenb];
-}
-
-void printSolution()
-{
-    string str  = "";
-
+    for(int i=1; i<sz; i++)
+        for(int j=i; j<sz-i; j+=i)
+            dp[j] += i;
 }
 
 int main()
 {
-    int m;
-    while(gets(a) && gets(b))
+    sumOfDivisors();
+    long long n;
+    while(cin >> n)
     {
-        m = lcs();
-        printf("%d\n",m);
-        memset(c,0,sizeof(c));
+        cout << "Sum of Divisors of " << n << " is: " << dp[n] << endl;
     }
     return 0;
 }
-
