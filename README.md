@@ -1,0 +1,2 @@
+# Competitive-Programming
+This Repository contains all the programs either small or large or Online Judge solves I have done during attending B.Sc. in Computer Science and Engineering from Metropolitan University, Sylhet, Bangladesh. This repository is free to recreate under Apache License 2.0 and Don't need to make me consider while using anything from this repository and  100% legal to reproduce from this repository and Giving no credit.
